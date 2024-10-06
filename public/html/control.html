@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controller</title>
+</head>
+
+<body>
+  <style>
+    #controlLetters {
+      display: grid;
+      grid-template-columns: repeat(16, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      width: 0px;
+      gap: 5px;
+    }
+
+    .letterBtn {
+      background-color: black;
+      color: white;
+      width: 60px;
+      height: 100px;
+    }
+
+    .letterBtn:hover {
+      background-color: white !important;
+      color: black !important;
+    }
+
+    .letterBtn:disabled {
+      background-color: gray;
+    }
+
+    p {
+      font-family: 'Myriad Pro';
+      font-size: 30pt;
+      text-align: center;
+      margin: 0;
+    }
+  </style>
+  <div id="controlLetters">
+
+  </div>
+  <div>
+    <span>Đề</span>
+    <input type="file" id="fileInput" /><br>
+    <hr>
+    <button id="prevRoundBtn">Ô chữ trước</button>
+    <span style="width:50px" id="round">Chọn vòng chơi</span>
+    <button id="nextRoundBtn">Ô chữ sau</button>
+    <hr>
+    <span>Ô chữ</span>
+    <button id="showPuzzle">Hiện ô chữ</button>
+    <button id="solvePuzzle">Giải ô chữ</button>
+    <button id="puzzleMode">Chế độ: Đoán nhanh</button>
+    <hr>
+    <span>Nón</span>
+    <button id="spinWheel">Quay nón</button>
+    <button id="togglePt">Ô phần thưởng: Tắt</button>
+    <button id="toggleBm">Ô bí mật: Tắt</button>
+    <button id="toggleDb">Nón đặc biệt: Tắt</button>
+    <hr>
+    <span>Âm thanh</span>
+    <button id="ptBtn">Phần thưởng</button>
+    <button id="bmBtn">Bí mật</button>
+    <button id="tlmmBtn">Thêm lượt/May mắn</button>
+    <button id="cdBtn">Chia đôi</button>
+    <button id="mdBtn">Mất điểm</button>
+    <button id="mlBtn">Mất lượt</button>
+    <button id="saiBtn">Sai</button>
+    <button id="nen1Btn">Nền 1</button>
+    <button id="nen2Btn">Nền 2</button>
+    <button id="30sBtn">30s đặc biệt</button>
+    <button id="10sBtn">10s đặc biệt</button>
+    <button id="stopBtn">Dừng hết tất cả âm thanh</button>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"
+    integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="../js/control.js"></script>
+</body>
+
+</html>
