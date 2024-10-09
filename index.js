@@ -65,8 +65,8 @@ controlNs.on('connection', (socket) => {
   socket.on('normalMode', () => {
     puzzleNs.emit('normalMode')
   })
-  socket.on('spinWheel', () => {
-    wheelNs.emit('spinWheel')
+  socket.on('spinWheel', (data) => {
+    wheelNs.emit('spinWheel', (data))
   })
   socket.on('enablePt', () => {
     wheelNs.emit('enablePt')

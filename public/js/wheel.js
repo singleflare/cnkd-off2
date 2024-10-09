@@ -114,8 +114,8 @@ function getRandomNumberBetween(min, max) {
 }
 
 let tempCurrentRotation = 0
-async function spin() {
-  let nextRotation = getRandomNumberBetween(360 * 4, 360 * 6)
+async function spin(deg) {
+  let nextRotation = deg
   tempCurrentRotation += nextRotation
   document.getElementById('bigWheel').style.transform = 'rotate(' + tempCurrentRotation + 'deg)';
   spinSound.play()
@@ -124,8 +124,8 @@ async function spin() {
   currentRotation = currentRotationRef.degree
 }
 
-wheelSocket.on('spinWheel', () => {
-  spin();
+wheelSocket.on('spinWheel', (deg) => {
+  spin(deg);
 })
 wheelSocket.on('enablePt', () => {
   $('#pt').css('opacity', 1)

@@ -149,8 +149,11 @@ $('#puzzleMode').click(() => {
   }
 })
 
+function getRandomNumberBetween(min, max) {
+  return Math.random() * (max - min) + min;
+}
 $('#spinWheel').click(() => {
-  controlSocket.emit('spinWheel')
+  controlSocket.emit('spinWheel', (getRandomNumberBetween(360 * 4, 360 * 6)))
 })
 
 let isBmEnabled = false
