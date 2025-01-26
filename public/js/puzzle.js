@@ -46,6 +46,9 @@ const cd10sSound = new Howl({
   src: ['../media/sounds/10s.mp3'],
   volume: 0.5
 })
+const openLetter12012Sound = new Howl({
+  src: ['../media/sounds/mo_o_chu_pt1_2012.wav'],
+})
 
 
 let puzzleboardRef = await getDocEntry('cnkd-off', 'puzzleboard')
@@ -96,7 +99,7 @@ function showLetter(letterNumber) {
       $('#letter' + letterNumber).addClass('waitToOpen')
       $('#letter' + letterNumber).removeClass('shown')
       letterOpenSequences[letterNumber - 16] = 1
-      openLetter1Sound.play()
+      openLetter12012Sound.play()
     }
     else if (letterOpenSequences[letterNumber - 16] == 1) {
       $('#letter' + letterNumber).addClass('shown')
@@ -130,7 +133,7 @@ function showRoundInfo(puzzleArray) {
   for (let i = 0; i <= 15; i++) {
     $('#letter' + i).addClass('roundDisplay')
     $('#letter' + i).removeClass('shown')
-    if (puzzleArray[0][i] != null) {
+    if (puzzleArray[i] != null) {
       $('#letter' + i).removeClass('roundDisplay')
       $('#letter' + i).addClass('shown')
       $('#letter' + i + ' p').css('opacity', '1')
@@ -155,7 +158,7 @@ function showPuzzle(puzzleArray) {
   showPuzzleSequences.forEach((showPuzzleSequence, index) => {
     setTimeout(() => {
       showPuzzleSequence.forEach((letterNumber) => {
-        if (puzzleArray[0][letterNumber] != null) {
+        if (puzzleArray[letterNumber] != null) {
           $('#letter' + letterNumber).addClass('shown');
         }
       });
@@ -179,7 +182,7 @@ function solvePuzzle(puzzleArray) {
   solvePuzzleSound.play()
   let solvePuzzleInterval;
   for (let ind = 16; ind <= 63; ind++) {
-    if (puzzleArray[0][ind] != null) {
+    if (puzzleArray[ind] != null) {
       availableLetters.push(ind)
     }
   }
@@ -189,13 +192,13 @@ function solvePuzzle(puzzleArray) {
       if (availableLetters[i] != null) {
         $('#letter' + availableLetters[i]).addClass('shown')
         $('#letter' + availableLetters[i] + ' p').css('opacity', '1')
-        $('#letter' + availableLetters[i] + ' p').text(puzzleArray[0][availableLetters[i]])
+        $('#letter' + availableLetters[i] + ' p').text(puzzleArray[availableLetters[i]])
       }
       i++;
       console.log(i)
       if (i > 63) clearInterval(solvePuzzleInterval)
     }, 1)
-  }, 2500)
+  }, 1500)
   for (let i = 16; i <= 63; i++) {
     cloudHasLetter[i] = $('#letter' + i + ' p').text()
     if ($('#letter' + i + ' p').text() != '') cloudIsShown[i] = '1'
@@ -205,15 +208,16 @@ function solvePuzzle(puzzleArray) {
 }
 
 function translateArrayToPuzzle(puzzleArray) {
+  console.log(puzzleArray)
   for (let i = 0; i <= 63; i++) {
-    if (puzzleArray[0][i] == null) {
+    if (puzzleArray[i] == null) {
       $('#letter' + i + ' p').text('')
       cloudHasLetter[i] = ''
       cloudIsShown[i] = ''
     }
     else {
-      $('#letter' + i + ' p').text(puzzleArray[0][i])
-      cloudHasLetter[i] = puzzleArray[0][i]
+      $('#letter' + i + ' p').text(puzzleArray[i])
+      cloudHasLetter[i] = puzzleArray[i]
       cloudIsShown[i] = '0'
     }
     updateDocEntry('cnkd-off', 'puzzleboard', { hasLetter: cloudHasLetter })
@@ -227,17 +231,39 @@ puzzleSocket.on('showLetter', (letterNumber) => {
 })
 puzzleSocket.on('sendPuzzleToPuzzleBoard', (data) => {
   resetPuzzle()
+  for (let i = 0; i < 16; i++) {
+    $('#letter' + i).addClass('roundDisplay')
+  }
   letterOpenSequences = Array(48).fill(0)
-  translateArrayToPuzzle(data)
-  showRoundInfo(data)
+  translateArrayToPuzzle(data[0])
+  showRoundInfo(data[0])
 })
 puzzleSocket.on('solvePuzzle', (data) => {
   console.log(data)
-  solvePuzzle(data)
+  if (Array.isArray(data[0])) {
+    solvePuzzle(data[0])
+  }
+  else {
+    solvePuzzle(data)
+  }
 })
 puzzleSocket.on('showPuzzle', (data) => {
-  showPuzzle(data)
+  for (let i = 0; i <= 63; i++) {
+    if (data[i] == '') {
+      data[i] = null
+    }
+  }
+  console.log(data)
+  if (Array.isArray(data[0])) {
+    console.log('data[0]')
+    showPuzzle(data[0])
+  }
+  else {
+    console.log('data')
+    showPuzzle(data)
+  }
 })
+
 puzzleSocket.on('tossupMode', () => {
   puzzleMode = 'tossup'
 })
@@ -287,4 +313,8 @@ puzzleSocket.on('10s', () => {
       $('#letter15').addClass('roundDisplay')
     }
   }, 1000)
+})
+
+puzzleSocket.on('deleteCloudPuzzle', () => {
+  updateDocEntry('cnkd-off', 'puzzleboard', { hasLetter: Array(64).fill(''), isShown: Array(64).fill('') })
 })

@@ -9,19 +9,43 @@
 
 <body>
   <style>
+    body {
+      background-color: black;
+      aspect-ratio: 16/9;
+    }
+
+    span {
+      font-family: 'Myriad Pro';
+      font-size: 15pt;
+      color: white;
+    }
+
+    button {
+      font-family: 'Myriad Pro';
+      font-size: 15pt;
+      background-color: black;
+      color: white;
+      border: 1px solid white;
+    }
+
+    #controlButtons button:hover {
+      background-color: white;
+      color: black;
+    }
+
     #controlLetters {
+      position: relative;
       display: grid;
       grid-template-columns: repeat(16, 1fr);
       grid-template-rows: repeat(3, 1fr);
       width: 0px;
-      gap: 5px;
     }
 
     .letterBtn {
       background-color: black;
       color: white;
-      width: 60px;
-      height: 100px;
+      width: 45px;
+      height: 75px;
     }
 
     .letterBtn:hover {
@@ -39,11 +63,61 @@
       text-align: center;
       margin: 0;
     }
+
+    .puzzleInput {
+      display: grid;
+      grid-template-columns: repeat(16, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      width: 0px;
+      gap: 5px;
+    }
+
+    .letterInput {
+      width: 25px;
+      height: 50px;
+      font-size: 25pt;
+      text-align: center;
+    }
+
+    #flexContainer {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #scoreboard {
+      display: inline-block;
+    }
   </style>
   <div id="controlLetters">
-
   </div>
-  <div>
+  <div id='scoreboard'>
+    <input type="number" id="p1ScoreInput" style='width: 50px;' />
+    <button class='set' id='p1Set'>Set</button>
+    <button class='plus' id='p1Plus'>+</button>
+    <button class='minus' id='p1Minus'>-</button>
+    <button class='double' id='p1Double'>x2</button>
+    <button class='half' id='p1Half'>/2</button>
+    <button class='clear' id='p1Clear'>MĐ</button>
+    <input id='p1Name' placeholder='Tên NC1'></input><span id='p1Score'></span><br>
+    <input type="number" id="p2ScoreInput" style='width: 50px;' />
+    <button class='set' id='p2Set'>Set</button>
+    <button class='plus' id='p2Plus'>+</button>
+    <button class='minus' id='p2Minus'>-</button>
+    <button class='double' id='p2Double'>x2</button>
+    <button class='half' id='p2Half'>/2</button>
+    <button class='clear' id='p2Clear'>MĐ</button>
+    <input id='p2Name' placeholder='Tên NC2'></input><span id='p2Score'></span><br>
+    <input type="number" id="p3ScoreInput" style='width: 50px;' />
+    <button class='set' id='p3Set'>Set</button>
+    <button class='plus' id='p3Plus'>+</button>
+    <button class='minus' id='p3Minus'>-</button>
+    <button class='double' id='p3Double'>x2</button>
+    <button class='half' id='p3Half'>/2</button>
+    <button class='clear' id='p3Clear'>MĐ</button>
+    <input id='p3Name' placeholder='Tên NC3'></input><span id='p3Score'></span><br>
+  </div>
+  <div id="controlButtons">
+
     <span>Đề</span>
     <input type="file" id="fileInput" /><br>
     <hr>
@@ -55,6 +129,7 @@
     <button id="showPuzzle">Hiện ô chữ</button>
     <button id="solvePuzzle">Giải ô chữ</button>
     <button id="puzzleMode">Chế độ: Đoán nhanh</button>
+    <button id="deleteCloudPuzzle">Xóa ô chữ trên cloud</button>
     <hr>
     <span>Nón</span>
     <button id="spinWheel">Quay nón</button>
@@ -75,6 +150,25 @@
     <button id="30sBtn">30s đặc biệt</button>
     <button id="10sBtn">10s đặc biệt</button>
     <button id="stopBtn">Dừng hết tất cả âm thanh</button>
+    <hr>
+    <span>Nhập ô chữ thủ công</span>
+    <button id="showWelcomePuzzle">Hiện ô chữ "CHIẾC NÓN KỲ DIỆU XIN KÍNH CHÀO QUÝ VỊ"</button>
+    <div id="flexContainer">
+      <div id="noAccentDiv" style="width:605px">
+        <span>Ô chữ không dấu</span>
+        <div id="noAccentPuzzleInput" class="puzzleInput"></div>
+        <button id="submitNAP" class="submitBtn">Nhập</button>
+        <button id="showCustomPuzzle">Hiện ô chữ thủ công</button>
+      </div>
+      <button id="copy" style="width:150px">Sao chép chữ từ ô chữ không dấu sang ô chữ có dấu</button>
+      <div id="accentDiv">
+        <span>Ô chữ có dấu</span>
+        <div id="accentPuzzleInput" class="puzzleInput"></div>
+        <button id="solveCustomPuzzle" class="submitBtn">Giải ô chữ thủ công</button>
+      </div>
+    </div>
+    <hr>
+
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"

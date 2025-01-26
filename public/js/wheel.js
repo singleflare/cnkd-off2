@@ -109,10 +109,6 @@ wheelSocket.on('playnen2', () => {
   nen2Sound.play()
 })
 
-function getRandomNumberBetween(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
 let tempCurrentRotation = 0
 async function spin(deg) {
   let nextRotation = deg

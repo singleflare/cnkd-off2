@@ -32,15 +32,18 @@ console.log('Puzzle: http://localhost:3000/puzzle');
 console.log('Control: http://localhost:3000/control');
 console.log('Wheel: http://localhost:3000/wheel');
 console.log('Puzzle Full Screen: http://localhost:3000/puzzleFullScreen');
+console.log('Host: http://localhost:3000/host');
 
 app.get('/puzzle', (req, res) => res.sendFile(join(__dirname, '/public/html/puzzle.html')))
 app.get('/control', (req, res) => res.sendFile(join(__dirname, '/public/html/control.html')))
 app.get('/wheel', (req, res) => res.sendFile(join(__dirname, '/public/html/wheel.html')))
-app.get('/wheelFullScreen', (req, res) => res.sendFile(join(__dirname, '/public/html/puzzleFullScreen.html')))
+app.get('/host', (req, res) => res.sendFile(join(__dirname, '/public/html/host.html')))
+app.get('/puzzleFullScreen', (req, res) => res.sendFile(join(__dirname, '/public/html/puzzleFullScreen.html')))
 
 const puzzleNs = ioServer.of('/puzzle');
 const wheelNs = ioServer.of('/wheel');
 const controlNs = ioServer.of('/control');
+const hostNs = ioServer.of('/host');
 
 puzzleNs.on('connection', (socket) => {
 
@@ -118,5 +121,11 @@ controlNs.on('connection', (socket) => {
   })
   socket.on('playnen2', () => {
     wheelNs.emit('playnen2')
+  })
+  socket.on('deleteCloudPuzzle', () => {
+    puzzleNs.emit('deleteCloudPuzzle')
+  })
+  socket.on('scoreboard', (data) => {
+    hostNs.emit('scoreboard', data)
   })
 })
