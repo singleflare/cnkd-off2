@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzle full screen</title>
+</head>
+
+<body>
+  <style>
+    * {
+      -webkit-user-select: none;
+      /* Safari */
+      -ms-user-select: none;
+      /* IE 10 and IE 11 */
+      user-select: none;
+      /* Standard syntax */
+      pointer-events: none;
+    }
+
+    @font-face {
+      font-family: utm-thanh-nhac;
+      src: url("https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/UTM-Thanh-Nhac-TL.ttf?v=1741055311136");
+    }
+
+    body {
+      background-color: white;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #bg {
+      position: absolute;
+      background-image: url('https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/bg%20cuc%20quang.jpg?v=1747799830015');
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: -3;
+      width: 1930px;
+      height: 1090px;
+      top: -5px;
+      left: -5px;
+      filter: blur(5px);
+      background-color: black;
+    }
+
+    :root {
+      --unopened: #72B04E;
+      --waitToOpen: #0483fb;
+      --opened: #FFFFFF;
+    }
+
+    p {
+      font-family: 'Myriad Pro';
+      font-size: 45pt;
+      text-align: center;
+      margin: 9px 0px;
+      font-weight: 600;
+    }
+
+    #board {
+      position: absolute;
+      display: grid;
+      grid-template-columns: repeat(16, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      left: 447.5px;
+      top: 512px;
+      scale: 1.45;
+      gap: 11px;
+    }
+
+    .letter {
+      background-color: var(--unopened);
+      width: 56px;
+      height: 85px;
+      border: 3px black solid;
+      box-sizing: border-box;
+    }
+
+    @keyframes bobbing {
+      0% {
+        transform: scale(0)
+      }
+
+      80% {
+        transform: scale(1.2)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    .letter p.animated {
+      animation: bobbing linear 0.4s;
+    }
+
+    .letter.waitToOpen {
+      background-color: var(--waitToOpen);
+    }
+
+    .letter.shown {
+      background-color: var(--opened);
+    }
+
+    .letter.timer {
+      background-color: var(--timer);
+    }
+
+    .letter15 p.pMarginLeft {
+      margin-left: 0px;
+    }
+
+    #p1Score,
+    #p2Score,
+    #p3Score {
+      position: absolute;
+      text-align: center;
+      font-size: 40pt;
+      top: 31px;
+      width: 385px;
+      color: white;
+      font-family: utm-thanh-nhac;
+    }
+
+    #p1Score {
+      left: 356px;
+    }
+
+    #p2Score {
+      left: 768px;
+    }
+
+    #p3Score {
+      left: 1180px;
+    }
+
+    #boardBg {
+      position: absolute;
+      top: 86px;
+      width: 1640px;
+      left: 160px;
+    }
+  </style>
+  <div id='bg'></div>
+  <img src='https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/puzzle2012withnon.png?v=1747747331592'
+    id='boardBg'>
+  <div id="board"></div>
+  <img
+    src="https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/b%E1%BA%A3ng%20%C4%91i%E1%BB%83m.png?v=1741050447113"
+    style="position:absolute;width:1920px;">
+  <div id="p1Score"></div>
+  <div id="p2Score"></div>
+  <div id="p3Score"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"
+    integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type='module' src="../js/puzzle2012.js"></script>
+</body>
+
+</html>

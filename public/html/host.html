@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Host</title>
+</head>
+
+<body>
+  <style>
+    body {
+      background: black;
+      margin:0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow:hidden;
+    }
+
+    span {
+      color: white;
+      font-size: 20pt;
+    }
+    button{
+      color:white;
+      background-color:black;
+      font-size:20pt;
+      border:1px solid white;
+    }
+    button:disabled{
+      opacity:0.5;
+    }
+    #page{
+      width:1920px;
+      height:1080px;
+      margin:0;
+      position:relative;
+    }
+    #hostArea{
+      position:relative;
+      top:50%;
+      width:100%;
+      height:100%;
+    }
+    iframe{
+      width:100%;
+      position:absolute;
+      aspect-ratio:16/9;
+      scale:0.5;
+      transform-origin: 0 0;
+    }
+    #puzzleIframe{
+      left:50%;
+    }
+    #wheelIframe{
+      left:0;
+    }
+    table{
+      position:absolute;
+      width:50%;
+    }
+    table>*{
+      color:white;
+      font-size:20pt;
+    }
+    td{
+      text-align:center;
+    }
+    th,td{
+      border:1px solid white;
+    }
+    #rightSide{
+      position:relative;
+      left:50%;
+      width:50%;
+    }
+    #rightSide p{
+      color:white;
+      margin:0;
+      font-size:20pt;
+    }
+    #puzzle{
+      display:grid;
+      grid-template-columns:repeat(16,1fr);
+      grid-template-rows:repeat(4,1fr);
+    }
+    #puzzle div{
+      color:white;
+      font-size:20pt;
+      border:1px solid white;
+      text-align:center;
+      padding:5px 0px
+    }
+    
+  </style>
+  <div id='page'>
+      <iframe src='https://cnkd-off2.glitch.me/puzzleFullScreen' id='puzzleIframe'></iframe>
+    <iframe src='https://cnkd-off2.glitch.me/wheel' id='wheelIframe'></iframe>
+    <div id='hostArea'>
+      <table>
+        <tr>
+          <th>Tên</th>
+          <th>Vòng này</th>
+          <th>Tổng</th>
+        </tr>
+        <tr>
+          <td><span id='p1Name'></span></td>
+          <td><span id='p1Score'></span></td>
+          <td><span id='p1Total'></span></td>
+        </tr>
+        <tr>
+          <td><span id='p2Name'></span></td>
+          <td><span id='p2Score'></span></td>
+          <td><span id='p2Total'></span></td>
+        </tr>
+        <tr>
+          <td><span id='p3Name'></span></td>
+          <td><span id='p3Score'></span></td>
+          <td><span id='p3Total'></span></td>
+        </tr>
+      </table>
+      <div id='rightSide'>
+        <div id='puzzle'></div>
+        <p id='numOfLetters'>Chữ cái</p>
+        <p id='question'>Câu hỏi</p>
+        <div id='letters'></div>
+        <p id='explain'>Giải thích</p>
+      </div>
+    </div>
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"
+    integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module" src="../js/host.js"></script>
+</body>
+
+</html>
