@@ -10,15 +10,14 @@
 <body>
   <style>
     * {
-      -webkit-user-select: none; /* Safari */
-      -ms-user-select: none; /* IE 10 and IE 11 */
-      user-select: none; /* Standard syntax */
+      pointer-events: none;
     }
-    
+
     @font-face {
       font-family: utm-thanh-nhac;
       src: url("https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/UTM-Thanh-Nhac-TL.ttf?v=1741055311136");
     }
+
     body {
       background-color: white;
       margin: 0;
@@ -27,16 +26,16 @@
 
     #bg {
       position: absolute;
-      background-image: url('https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/bg%20nt%202.jpg?v=1746879198711');
-      background-repeat:no-repeat;
-      background-size:cover;
+      background-image: url('../media/bg-full.png');
+      background-repeat: no-repeat;
+      background-size: cover;
       z-index: -3;
       width: 1930px;
       height: 1090px;
       top: -5px;
       left: -5px;
       filter: blur(5px);
-      
+
     }
 
     :root {
@@ -72,12 +71,12 @@
       width: 1980px;
       height: 740px;
       top: 230px;
-      left:-30px;
+      left: -30px;
       background-color: black;
       z-index: -1;
-      border:10px solid #48abe0;
-      box-sizing:border-box;
-      box-shadow: 0 0 20px 10px #48abe0 , 0 0 20px 10px #48abe0 inset;
+      border: 10px solid #48abe0;
+      box-sizing: border-box;
+      box-shadow: 0 0 20px 10px #48abe0, 0 0 20px 10px #48abe0 inset;
     }
 
     .letter {
@@ -123,34 +122,43 @@
     .letter15 p.pMarginLeft {
       margin-left: 0px;
     }
-    #p1Score,#p2Score,#p3Score{
-      position:absolute;
-      text-align:center;
-      font-size:40pt;
-      top:54px;
-      width:385px;
-      color:white;
-      font-family:utm-thanh-nhac;
+
+    #p1Score,
+    #p2Score,
+    #p3Score {
+      position: absolute;
+      text-align: center;
+      font-size: 40pt;
+      top: 54px;
+      width: 385px;
+      color: white;
+      font-family: utm-thanh-nhac;
     }
-    #p1Score{
-      left:380px;
+
+    #p1Score {
+      left: 380px;
     }
-    #p2Score{
-      left:807px;
+
+    #p2Score {
+      left: 807px;
     }
-    #p3Score{
-      left:1235px;
+
+    #p3Score {
+      left: 1235px;
     }
   </style>
   <div id='bg'></div>
   <div id="board"></div>
   <div id='black'></div>
-  <img src="https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/b%E1%BA%A3ng%20%C4%91i%E1%BB%83m.png?v=1741050447113" style="position:absolute;top:20px;">
+  <img
+    src="https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/b%E1%BA%A3ng%20%C4%91i%E1%BB%83m.png?v=1741050447113"
+    style="position:absolute;top:20px;">
   <div id="p1Score"></div>
   <div id="p2Score"></div>
   <div id="p3Score"></div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="../js/disableDevTools.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"
     integrity="sha512-xi/RZRIF/S0hJ+yJJYuZ5yk6/8pCiRlEXZzoguSMl+vk2i3m6UjUO/WcZ11blRL/O+rnj94JRGwt/CHbc9+6EA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>

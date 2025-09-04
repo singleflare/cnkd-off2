@@ -23,16 +23,16 @@ async function updateDocEntry(col, docId, data) {
 
 const puzzleSocket = io('/puzzle');
 
-function playSound(url){
-  let sound=new Howl({
-    src:[url]
+function playSound(url) {
+  let sound = new Howl({
+    src: [url]
   })
   sound.play()
 }
-puzzleSocket.on('playSound',url=>{
+puzzleSocket.on('playSound', url => {
   playSound(url)
 })
-puzzleSocket.on('stopSound',url=>{
+puzzleSocket.on('stopSound', url => {
   Howler.stop()
 })
 
@@ -96,7 +96,7 @@ function showLetter(letterNumber) {
       cloudIsShown[letterNumber] = '1'
       updateDocEntry('cnkd-off', 'puzzleboard', { isShown: cloudIsShown })
       playSound('../media/sounds/mochu2.mp3')
-      puzzleSocket.emit('disableLetterBtn',letterNumber)
+      puzzleSocket.emit('disableLetterBtn', letterNumber)
     }
   }
   if (puzzleMode == 'tossup') {
@@ -106,6 +106,7 @@ function showLetter(letterNumber) {
     cloudIsShown[letterNumber] = '1'
     updateDocEntry('cnkd-off', 'puzzleboard', { isShown: cloudIsShown })
     Howler.stop()
+    playSound('../media/sounds/mochu2.mp3')
   }
 }
 
@@ -192,23 +193,23 @@ function solvePuzzle(puzzleArray) {
   updateDocEntry('cnkd-off', 'puzzleboard', { isShown: cloudIsShown })
 }
 let openRandomTossUpLettersInterval
-puzzleSocket.on('openRandomLetterTossup',data=>{
-  let puzzleArray=data[0]
+puzzleSocket.on('openRandomLetterTossup', data => {
+  let puzzleArray = data[0]
   console.log(puzzleArray)
-  let availableLetters=[]
+  let availableLetters = []
   for (let i = 16; i <= 63; i++) {
     console.log(puzzleArray[i])
     if (puzzleArray[i] != '') {
-      console.log(i,puzzleArray[i])
+      console.log(i, puzzleArray[i])
       availableLetters.push(i)
     }
   }
   availableLetters.shift()
   shuffleArray(availableLetters)
-  
-  let cnt=0
-  openRandomTossUpLettersInterval=setInterval(()=>{
-    if(cnt<availableLetters.length){
+
+  let cnt = 0
+  openRandomTossUpLettersInterval = setInterval(() => {
+    if (cnt < availableLetters.length) {
       $('#letter' + availableLetters[cnt]).addClass('shown')
       $('#letter' + availableLetters[cnt] + ' p').css('opacity', '1')
       $('#letter' + availableLetters[cnt] + ' p').addClass('animated')
@@ -218,9 +219,9 @@ puzzleSocket.on('openRandomLetterTossup',data=>{
       playSound('https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/mochu2012pt2.wav?v=1746847872130')
       cnt++
     }
-  },800)
+  }, 800)
 })
-puzzleSocket.on('stopOpenRandomLetterTossup',()=>{
+puzzleSocket.on('stopOpenRandomLetterTossup', () => {
   clearInterval(openRandomTossUpLettersInterval)
 })
 
@@ -290,8 +291,9 @@ puzzleSocket.on('normalMode', () => {
 let time;
 let cdInterval;
 puzzleSocket.on('30s', () => {
-  $('#letter15').css('background-color', 'red')  
+  $('#letter15').css('background-color', 'red')
   $('#letter15 p').css('margin-left', '0')
+  $('#letter15 p').css('opacity', '1')
   time = 30
   $('#letter15 p').text(time)
   cdInterval = setInterval(() => {
@@ -306,12 +308,14 @@ puzzleSocket.on('30s', () => {
       clearInterval(cdInterval)
       $('#letter15').css('background-color', '#01E7F8')
       $('#letter15 p').text('')
+      $('#letter15 p').css('opacity', '0')
     }
   }, 1000)
 })
 puzzleSocket.on('10s', () => {
-  $('#letter15').css('background-color', 'red')  
+  $('#letter15').css('background-color', 'red')
   $('#letter15 p').css('margin-left', '0')
+  $('#letter15 p').css('opacity', '1')
   time = 10
   $('#letter15 p').text(time)
   cdInterval = setInterval(() => {
@@ -326,14 +330,15 @@ puzzleSocket.on('10s', () => {
       clearInterval(cdInterval)
       $('#letter15').css('background-color', '#01E7F8')
       $('#letter15 p').text('')
+      $('#letter15 p').css('opacity', '0')
     }
   }, 1000)
 })
-puzzleSocket.on('showWelcomePuzzle',()=>{
-  for(let i=0;i<=15;i++){
+puzzleSocket.on('showWelcomePuzzle', () => {
+  for (let i = 0; i <= 15; i++) {
     $('#letter' + i).removeClass('roundDisplay')
   }
-  for(let i=16;i<48;i++){
+  for (let i = 16; i < 48; i++) {
     $('#letter' + i).addClass('shown')
   }
   $('#letter16 p').text('C')
@@ -372,7 +377,7 @@ puzzleSocket.on('showWelcomePuzzle',()=>{
 
 puzzleSocket.on('deleteCloudPuzzle', () => {
   updateDocEntry('cnkd-off', 'puzzleboard', { hasLetter: Array(64).fill(''), isShown: Array(64).fill('') })
-  for(let i=0;i<64;i++){
+  for (let i = 0; i < 64; i++) {
     $('#letter' + i).removeClass('roundDisplay')
     $('#letter' + i).removeClass('shown')
     $('#letter' + i + ' p').text('')
@@ -380,7 +385,7 @@ puzzleSocket.on('deleteCloudPuzzle', () => {
   }
 })
 
-puzzleSocket.on('scoreboard',(data)=>{
+puzzleSocket.on('scoreboard', (data) => {
   $('#p1 .name').text(data.p1Name);
   $('#p2 .name').text(data.p2Name);
   $('#p3 .name').text(data.p3Name);
