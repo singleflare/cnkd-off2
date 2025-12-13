@@ -76,7 +76,7 @@ function showLetter(letterNumber) {
     if (letterOpenSequences[letterNumber] == 0) {
       $('#letter' + letterNumber).addClass('waitToOpen')
       $('#letter' + letterNumber).removeClass('shown')
-      playSound('../media/sounds/mochu1.mp3')
+      playSound('../media/sounds/mochu2012pt1.wav')
       letterOpenSequences[letterNumber] = 1
     }
     else if (letterOpenSequences[letterNumber] == 1) {
@@ -86,7 +86,7 @@ function showLetter(letterNumber) {
       letterOpenSequences[letterNumber] = 1
       cloudIsShown[letterNumber] = '1'
       updateDocEntry('cnkd-off', 'puzzleboard', { isShown: cloudIsShown })
-      playSound('../media/sounds/mochu2.mp3')
+      playSound('../media/sounds/mochu2012pt2.wav')
       puzzleSocket.emit('disableLetterBtn',letterNumber)
     }
   }
@@ -97,7 +97,7 @@ function showLetter(letterNumber) {
     cloudIsShown[letterNumber] = '1'
     updateDocEntry('cnkd-off', 'puzzleboard', { isShown: cloudIsShown })
     Howler.stop()
-    playSound('../media/sounds/mochu2.mp3')
+    playSound('../media/sounds/mochu2012pt2.wav')
   }
 }
 

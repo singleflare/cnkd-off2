@@ -196,11 +196,11 @@ $('#nextRoundBtn').click(() => {
 })
 $('#showPuzzle').click(() => {
   controlSocket.emit('showPuzzle', puzzles[puzzleNumber])
-  controlSocket.emit('playSound','../media/sounds/moochu.mp3')
+  controlSocket.emit('playSound','../media/sounds/moochu2012.wav')
 })
 $('#solvePuzzle').click(() => {
   controlSocket.emit('solvePuzzle', solvedPuzzles[puzzleNumber])
-  controlSocket.emit('playSound','../media/sounds/giaiochu.mp3')
+  controlSocket.emit('playSound','../media/sounds/giaiochu2012.wav')
 })
 let puzzleMode = 'tossup'
 $('#puzzleMode').click(() => {
