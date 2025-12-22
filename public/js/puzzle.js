@@ -106,7 +106,7 @@ function showLetter(letterNumber) {
     cloudIsShown[letterNumber] = '1'
     updateDocEntry('cnkd-off', 'puzzleboard', { isShown: cloudIsShown })
     Howler.stop()
-    playSound('../media/sounds/mochu2012pt2.wav')
+    playSound('../media/sounds/mochu2.mp3')
   }
 }
 
