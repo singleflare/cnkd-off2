@@ -9,6 +9,19 @@
 
 <body style="margin: 0%; overflow: hidden;">
   <style>
+    #bg {
+      position: absolute;
+      background-image: url('../media/bg gs.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: -3;
+      width: 1930px;
+      height: 1090px;
+      top: -5px;
+      left: -5px;
+      filter: blur(5px);
+    }
+
     #bigWheel {
       position: absolute;
       top: 189px;
@@ -18,6 +31,7 @@
       transition: transform 15s ease-in-out;
     }
   </style>
+  <div id='bg'></div>
   <div id="bigWheel">
     <img id="wheel" src="../media/wheel.png" style="position: absolute;
     scale:1.06">
@@ -36,12 +50,12 @@
     <img id="bm2" src="../media/bimat.png"
       style="position: absolute; transform-origin: right; top:293px;left:-20px;rotate: -150deg;opacity: 0;">
   </div>
-  <img id="bg" src="../media/purplebg.png"
-    style="position: absolute; width:1920px;height:1080px; z-index: -2; scale:1.1">
-  <img src="../media/podium.png" style="position: absolute;
+  <!-- <img id="bg" src="../media/purplebg.png"
+    style="position: absolute; width:1920px;height:1080px; z-index: -2; scale:1.1"> -->
+  <!-- <img src="../media/podium.png" style="position: absolute;
   left: 334px;
   top: -94px;
-  z-index: -1;">
+  z-index: -1;"> -->
   <img src="../media/kim.png" style="position: absolute;
   top:526px;
   left:541px;

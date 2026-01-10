@@ -267,7 +267,7 @@ $('#spin2012Btn').click(() => {
   controlSocket.emit('playSound','../media/sounds/2012.mp3')
 })
 $('#spin2012HighBtn').click(() => {
-  controlSocket.emit('playSound','https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/2012%20cao.wav?v=1747919401160')
+  controlSocket.emit('playSound','../media/sounds/2012cao.mp3')
 })
 $('#spin2016Btn').click(() => {
   controlSocket.emit('playSound','../media/sounds/2016.mp3')
