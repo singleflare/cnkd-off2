@@ -16,13 +16,13 @@
 
     span {
       font-family: 'Myriad Pro';
-      font-size: 15pt;
+      font-size: 35px;
       color: white;
     }
 
     button {
       font-family: 'Myriad Pro';
-      font-size: 15pt;
+      font-size: 25pt;
       background-color: black;
       color: white;
       border: 1px solid white;
@@ -32,10 +32,14 @@
       background-color: white;
       color: black;
     }
+
+    input {
+      font-size: 25pt;
+    }
   </style>
   <div id='scoreboard'>
     <input id='p1Name' placeholder='Tên NC1'></input>
-    <input type="number" id="p1ScoreInput" style='width: 50px;' />
+    <input type="number" id="p1ScoreInput" style='width: 100px;' />
     <button class='set' id='p1Set'>Set</button>
     <button class='plus' id='p1Plus'>+</button>
     <button class='minus' id='p1Minus'>-</button>
@@ -43,12 +47,12 @@
     <button class='half' id='p1Half'>/2</button>
     <button class='clear' id='p1Clear'>MĐ</button>
     <span id='p1Score'></span>
-    <input type='number' id='p1TotalInput' style='width:50px' />
+    <input type='number' id='p1TotalInput' style='width:100px' />
     <button class='totalSet' id='p1SetTotal'>Set điểm tổng</button>
     <button class='totalAdd' id='p1AddTotal'>Thêm vào điểm tổng</button>
     <span id='p1Total'></span><br>
     <input id='p2Name' placeholder='Tên NC2'>
-    <input type="number" id="p2ScoreInput" style='width: 50px;' />
+    <input type="number" id="p2ScoreInput" style='width: 100px;' />
     <button class='set' id='p2Set'>Set</button>
     <button class='plus' id='p2Plus'>+</button>
     <button class='minus' id='p2Minus'>-</button>
@@ -56,12 +60,12 @@
     <button class='half' id='p2Half'>/2</button>
     <button class='clear' id='p2Clear'>MĐ</button>
     <span id='p2Score'></span>
-    <input type='number' id='p2TotalInput' style='width:50px' />
+    <input type='number' id='p2TotalInput' style='width:100px' />
     <button class='totalSet' id='p2SetTotal'>Set điểm tổng</button>
     <button class='totalAdd' id='p2AddTotal'>Thêm vào điểm tổng</button>
     <span id='p2Total'></span><br>
     <input id='p3Name' placeholder='Tên NC3'></input>
-    <input type="number" id="p3ScoreInput" style='width: 50px;' />
+    <input type="number" id="p3ScoreInput" style='width: 100px;' />
     <button class='set' id='p3Set'>Set</button>
     <button class='plus' id='p3Plus'>+</button>
     <button class='minus' id='p3Minus'>-</button>
@@ -69,7 +73,7 @@
     <button class='half' id='p3Half'>/2</button>
     <button class='clear' id='p3Clear'>MĐ</button>
     <span id='p3Score'></span>
-    <input type='number' id='p3TotalInput' style='width:50px' />
+    <input type='number' id='p3TotalInput' style='width:100px' />
     <button class='totalSet' id='p3SetTotal'>Set điểm tổng</button>
     <button class='totalAdd' id='p3AddTotal'>Thêm vào điểm tổng</button>
     <span id='p3Total'></span><br>
@@ -79,12 +83,14 @@
   <button id="spin2012Btn">Nhạc quay 2012</button>
   <button id="spin2012HighBtn">Nhạc quay 2012 cao</button>
   <button id="spin2016Btn">Nhạc quay 2016</button>
+  <br>
   <button id="ptBtn">Phần thưởng</button>
   <button id="bmBtn">Bí mật</button>
   <button id="tlmmBtn">Thêm lượt/May mắn</button>
   <button id="cdBtn">Chia đôi</button>
   <button id="mdBtn">Mất điểm</button>
   <button id="mlBtn">Mất lượt</button>
+  <br>
   <button id="saiBtn">Sai</button>
   <button id="nen1Btn">Nền 1</button>
   <button id="nen2Btn">Nền 2</button>
