@@ -24,6 +24,11 @@
       src: url("../media/UTM-Thanh-Nhac-TL.ttf");
     }
 
+    @font-face {
+      font-family: 'Myriad Pro';
+      src: url('../media/MYRIADPRO-SEMIBOLD.OTF');
+    }
+
     body {
       background-color: white;
       margin: 0;
@@ -114,25 +119,17 @@
     #p1Score,
     #p2Score,
     #p3Score {
-      position: absolute;
-      text-align: center;
-      font-size: 40pt;
-      top: 31px;
-      width: 385px;
+      font-size: 60pt;
       color: white;
-      font-family: utm-thanh-nhac;
+      text-shadow: 2px 2px black;
     }
 
-    #p1Score {
-      left: 356px;
-    }
-
-    #p2Score {
-      left: 768px;
-    }
-
-    #p3Score {
-      left: 1180px;
+    #p1Name,
+    #p2Name,
+    #p3Name {
+      font-size: 20pt;
+      color: white;
+      text-shadow: 2px 2px black;
     }
 
     #boardBg {
@@ -141,14 +138,33 @@
       width: 1640px;
       left: 160px;
     }
+
+    .flexcon {
+      display: flex;
+      width: 1920px;
+      position: relative;
+    }
+
+    .flexcon>* {
+      width: 100%;
+      text-align: center;
+    }
   </style>
   <div id='bg'></div>
   <img src='../media/puzzle2012withnon.png' id='boardBg'>
   <div id="board"></div>
-  <img src="../media/bảng điểm.png" style="position:absolute;width:1920px;">
-  <div id="p1Score"></div>
-  <div id="p2Score"></div>
-  <div id="p3Score"></div>
+  <img src="../media/bảng điểm.png" style="position:absolute;width:1920px;display: none;">
+  <img src="../media/scoreboard2.png" style="position:absolute;width:1920px;">
+  <div class='flexcon'>
+    <div id="p1Name"></div>
+    <div id="p2Name"></div>
+    <div id="p3Name"></div>
+  </div>
+  <div class='flexcon'>
+    <div id="p1Score"></div>
+    <div id="p2Score"></div>
+    <div id="p3Score"></div>
+  </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="../js/jquery-3.7.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"

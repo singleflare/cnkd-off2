@@ -301,11 +301,11 @@ $('#nen2Btn').click(() => {
 })
 $('#30sBtn').click(() => {
   controlSocket.emit('playSound','../media/sounds/30s.mp3')
-  controlSocket.emit('30s')
+  //controlSocket.emit('30s')
 })
 $('#10sBtn').click(() => {
   controlSocket.emit('playSound','../media/sounds/10s.mp3')
-  controlSocket.emit('10s')
+  //controlSocket.emit('10s')
 })
 $('#stopBtn').click(() => {
   controlSocket.emit('stopSound')

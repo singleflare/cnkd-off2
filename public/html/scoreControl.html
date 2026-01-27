@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Điểm</title>
+</head>
+
+<body>
+  <style>
+    body {
+      background-color: black;
+      aspect-ratio: 16/9;
+    }
+
+    span {
+      font-family: 'Myriad Pro';
+      font-size: 15pt;
+      color: white;
+    }
+
+    button {
+      font-family: 'Myriad Pro';
+      font-size: 15pt;
+      background-color: black;
+      color: white;
+      border: 1px solid white;
+    }
+
+    button:hover {
+      background-color: white;
+      color: black;
+    }
+  </style>
+  <div id='scoreboard'>
+    <input id='p1Name' placeholder='Tên NC1'></input>
+    <input type="number" id="p1ScoreInput" style='width: 50px;' />
+    <button class='set' id='p1Set'>Set</button>
+    <button class='plus' id='p1Plus'>+</button>
+    <button class='minus' id='p1Minus'>-</button>
+    <button class='double' id='p1Double'>x2</button>
+    <button class='half' id='p1Half'>/2</button>
+    <button class='clear' id='p1Clear'>MĐ</button>
+    <span id='p1Score'></span>
+    <input type='number' id='p1TotalInput' style='width:50px' />
+    <button class='totalSet' id='p1SetTotal'>Set điểm tổng</button>
+    <button class='totalAdd' id='p1AddTotal'>Thêm vào điểm tổng</button>
+    <span id='p1Total'></span><br>
+    <input id='p2Name' placeholder='Tên NC2'>
+    <input type="number" id="p2ScoreInput" style='width: 50px;' />
+    <button class='set' id='p2Set'>Set</button>
+    <button class='plus' id='p2Plus'>+</button>
+    <button class='minus' id='p2Minus'>-</button>
+    <button class='double' id='p2Double'>x2</button>
+    <button class='half' id='p2Half'>/2</button>
+    <button class='clear' id='p2Clear'>MĐ</button>
+    <span id='p2Score'></span>
+    <input type='number' id='p2TotalInput' style='width:50px' />
+    <button class='totalSet' id='p2SetTotal'>Set điểm tổng</button>
+    <button class='totalAdd' id='p2AddTotal'>Thêm vào điểm tổng</button>
+    <span id='p2Total'></span><br>
+    <input id='p3Name' placeholder='Tên NC3'></input>
+    <input type="number" id="p3ScoreInput" style='width: 50px;' />
+    <button class='set' id='p3Set'>Set</button>
+    <button class='plus' id='p3Plus'>+</button>
+    <button class='minus' id='p3Minus'>-</button>
+    <button class='double' id='p3Double'>x2</button>
+    <button class='half' id='p3Half'>/2</button>
+    <button class='clear' id='p3Clear'>MĐ</button>
+    <span id='p3Score'></span>
+    <input type='number' id='p3TotalInput' style='width:50px' />
+    <button class='totalSet' id='p3SetTotal'>Set điểm tổng</button>
+    <button class='totalAdd' id='p3AddTotal'>Thêm vào điểm tổng</button>
+    <span id='p3Total'></span><br>
+  </div>
+  <hr>
+  <span>Âm thanh</span>
+  <button id="spin2012Btn">Nhạc quay 2012</button>
+  <button id="spin2012HighBtn">Nhạc quay 2012 cao</button>
+  <button id="spin2016Btn">Nhạc quay 2016</button>
+  <button id="ptBtn">Phần thưởng</button>
+  <button id="bmBtn">Bí mật</button>
+  <button id="tlmmBtn">Thêm lượt/May mắn</button>
+  <button id="cdBtn">Chia đôi</button>
+  <button id="mdBtn">Mất điểm</button>
+  <button id="mlBtn">Mất lượt</button>
+  <button id="saiBtn">Sai</button>
+  <button id="nen1Btn">Nền 1</button>
+  <button id="nen2Btn">Nền 2</button>
+  <button id="30sBtn">30s đặc biệt</button>
+  <button id="10sBtn">10s đặc biệt</button>
+  <button id="stopBtn">Dừng hết tất cả âm thanh</button>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"
+    integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="../js/control.js"></script>
+</body>
+
+</html>

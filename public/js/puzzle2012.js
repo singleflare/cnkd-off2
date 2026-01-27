@@ -76,7 +76,7 @@ function showLetter(letterNumber) {
     if (letterOpenSequences[letterNumber] == 0) {
       $('#letter' + letterNumber).addClass('waitToOpen')
       $('#letter' + letterNumber).removeClass('shown')
-      playSound('../media/sounds/mochu2012pt1.wav')
+      playSound('../media/sounds/mochu1.mp3')
       letterOpenSequences[letterNumber] = 1
     }
     else if (letterOpenSequences[letterNumber] == 1) {
@@ -86,7 +86,7 @@ function showLetter(letterNumber) {
       letterOpenSequences[letterNumber] = 1
       cloudIsShown[letterNumber] = '1'
       updateDocEntry('cnkd-off', 'puzzleboard', { isShown: cloudIsShown })
-      playSound('../media/sounds/mochu2012pt2.wav')
+      playSound('../media/sounds/mochu2.mp3')
       puzzleSocket.emit('disableLetterBtn',letterNumber)
     }
   }
@@ -97,7 +97,7 @@ function showLetter(letterNumber) {
     cloudIsShown[letterNumber] = '1'
     updateDocEntry('cnkd-off', 'puzzleboard', { isShown: cloudIsShown })
     Howler.stop()
-    playSound('../media/sounds/mochu2012pt2.wav')
+    playSound('../media/sounds/mochu2.mp3')
   }
 }
 
@@ -170,18 +170,19 @@ function solvePuzzle(puzzleArray) {
 }
 let openRandomTossUpLettersInterval
 puzzleSocket.on('openRandomLetterTossup',data=>{
-  let puzzleArray=data[0]
+  let puzzleArray=data
   console.log(puzzleArray)
   let availableLetters=[]
   for (let i = 0; i <= 63; i++) {
     console.log(puzzleArray[i])
-    if (puzzleArray[i] != null) {
+    if (puzzleArray[i] != '') {
       console.log(i,puzzleArray[i])
       availableLetters.push(i)
     }
   }
   availableLetters.shift()
   shuffleArray(availableLetters)
+  console.log(availableLetters)
   
   let cnt=0
   openRandomTossUpLettersInterval=setInterval(()=>{
@@ -192,7 +193,7 @@ puzzleSocket.on('openRandomLetterTossup',data=>{
       cloudIsShown[availableLetters[cnt]] = '1'
       updateDocEntry('cnkd-off', 'puzzleboard', { isShown: cloudIsShown })
       Howler.stop()
-      playSound('https://cdn.glitch.global/d0e93c15-7185-4dae-8b43-4957a4b0d047/mochu2012pt2.wav?v=1746847872130')
+      playSound('../media/sounds/mochu2.mp3')
       cnt++
     }
   },800)
@@ -351,9 +352,9 @@ puzzleSocket.on('deleteCloudPuzzle', () => {
 })
 
 puzzleSocket.on('scoreboard',(data)=>{
-  $('#p1 .name').text(data.p1Name);
-  $('#p2 .name').text(data.p2Name);
-  $('#p3 .name').text(data.p3Name);
+  $('#p1Name').text(data.p1Name);
+  $('#p2Name').text(data.p2Name);
+  $('#p3Name').text(data.p3Name);
   $('#p1Score').text(data.p1Score);
   $('#p2Score').text(data.p2Score);
   $('#p3Score').text(data.p3Score);
